@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
-
+#para redirigir a las urls de las apps
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('productos/',include(('apps.productos.urls','productos'))),
 ]
 
 if settings.DEBUG:
