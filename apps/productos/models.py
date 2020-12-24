@@ -5,7 +5,7 @@ class Producto(models.Model):
     nombre = models.CharField('Nombre del Producto',max_length=50, unique=True)
     descripcion = models.TextField('Descripcion',blank=True, null=True)
     precio = models.FloatField('Precio de venta')
-    stock=models.IntegerField('Cantidad existentess')
+    stock=models.IntegerField('Cantidad existente')
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE,verbose_name="Proveedor")
     # para conocer cuanto una parroquias se Registro
     created_at = models.DateTimeField(auto_now_add=True)
