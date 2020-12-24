@@ -2,7 +2,7 @@ from django.db import models
 from apps.proveedores.models import Proveedor
 # Create your models here.
 class Producto(models.Model):
-    nombre = models.CharField('Nombre del Producto',max_length=50, unique=True)
+    nombre = models.CharField('Nombre Producto',max_length=50, unique=True)
     descripcion = models.TextField('Descripcion',blank=True, null=True)
     precio = models.FloatField('Precio de venta')
     stock=models.IntegerField('Cantidad existente')
