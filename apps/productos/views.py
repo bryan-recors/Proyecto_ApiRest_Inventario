@@ -46,3 +46,19 @@ class DetalleProducto(APIView):
         producto = self.get_object(id)
         producto.delete()
         return Response(status=204) # como ya se elimino no encontro ningun contenido
+
+#buscar un producto por su nombre
+class ProductosSearchListView(APIView):
+    def get_queryset(self):
+        try:
+            return Producto.objects.filter(nombre__icontains=self.query())
+        except Producto.DoesNotExist:
+            producto = get_object_or_404(Producto, nombre=self.query())
+
+    def query(self):
+        return self.request.GET.get('q')
+
+    def get(self,request):
+        productos = self.get_queryset()
+        producto_json = ProductoSerializer(productos, many=True)
+        return Response(producto_json.data)
