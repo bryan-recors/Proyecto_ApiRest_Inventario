@@ -11,9 +11,6 @@ class Venta(models.Model):
         verbose_name= 'Venta'
         verbose_name_plural = 'Ventas'
         ordering = ['fecha']
-    #para que se muestre por nombre en el admin
-    def __str__(self):
-        return self.id
 
 class DetalleVenta(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE,verbose_name="factura")
@@ -24,6 +21,3 @@ class DetalleVenta(models.Model):
     class Meta:
         verbose_name= 'Detalle de la Venta'
         verbose_name_plural = 'Detalle de las Ventas'
-    #para que se muestre por nombre en el admin
-    def __str__(self):
-        return self.id
