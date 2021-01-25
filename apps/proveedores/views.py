@@ -1,7 +1,4 @@
 from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
 #para usar la APIView de la libreria rest_framework
 from rest_framework.views import APIView
 #para retornar json
@@ -11,18 +8,19 @@ from apps.proveedores.serializers import ProveedorSerializers
 # importo mi modelo
 from apps.proveedores.models import Proveedor
 from django.shortcuts import get_object_or_404
+
 class ListarProveedores(APIView):
     def get(self, request):
         proveedores = Proveedor.objects.all()
         proveedor_json = ProveedorSerializers(proveedores, many=True)
         return Response(proveedor_json.data)
         #Crear registro de Proveedores
-        def post(self, request):
-            proveedor_json=ProveedorSerializers(data=request)
-            if proveedor_json.isvalid():
-                proveedor_json.save()
-                return Response(proveedor_json.data, status=201)
-            return Response(proveedor_json.erros, status=400)
+    def post(self,request):
+        proveedor_json = ProveedorSerializers(data=request.data) #UnMarshall
+        if proveedor_json.is_valid():
+            proveedor_json.save()
+            return Response(proveedor_json.data, status=201) # si se creo
+        return Response(proveedor_json.errors, status=400) #si no se pudo crear
 #listar un proveedor
 class DetalleProveedor(APIView):
     #obtener el objeto de acuerdo al id que recibe

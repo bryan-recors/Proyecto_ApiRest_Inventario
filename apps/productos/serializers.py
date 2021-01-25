@@ -8,3 +8,8 @@ class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields =('id','nombre','descripcion','precio','stock','proveedor')
+class PostProductoSerializer(serializers.ModelSerializer):
+    #para que se Guarde un nuevo
+    class Meta:
+        model = Producto
+        fields =('id','nombre','descripcion','precio','stock','proveedor')

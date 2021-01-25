@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from apps.productos.models import Producto
 from rest_framework.response import Response
-from apps.productos.serializers import ProductoSerializer
+from apps.productos.serializers import ProductoSerializer,PostProductoSerializer
 #para cuando no existe un productos
 from django.shortcuts import get_object_or_404
 # Listar la lista de productos
@@ -14,7 +14,7 @@ class ListarProductos(APIView):
         return Response(producto_json.data)
     #crear un registro
     def post(self,request):
-        producto_json = ProductoSerializer(data=request.data) #UnMarshall
+        producto_json = PostProductoSerializer(data=request.data) #UnMarshall
         if producto_json.is_valid():
             producto_json.save()
             return Response(producto_json.data, status=201) # si se creo
