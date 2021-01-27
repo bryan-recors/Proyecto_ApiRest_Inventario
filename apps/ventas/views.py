@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from apps.ventas.models import Venta
+from apps.ventas.models import Venta,DetalleVenta
 from rest_framework.response import Response
-from apps.ventas.serializers import VentaSerializer
+from apps.ventas.serializers import VentaSerializer,DetalleVentaSerializer
 #para cuando no existe un ventas
 from django.shortcuts import get_object_or_404
 # Listar la lista de ventas
-class Ventas(APIView):
+class VentasView(APIView):
     #listar un registro
     def get(self,request):
         ventas = Venta.objects.all()
@@ -19,3 +19,17 @@ class Ventas(APIView):
             venta_json.save()
             return Response(venta_json.data, status=201) # si se creo
         return Response(venta_json.errors, status=400) #si no se pudo crear
+
+class DetalleVentaView(APIView):
+    #listar un registro
+    def get(self,request):
+        detalle = DetalleVenta.objects.all()
+        detalle_json = DetalleVentaSerializer(detalle, many=True)
+        return Response(detalle_json.data)
+    #crear un registro
+    def post(self,request):
+        detalle_json = DetalleVentaSerializer(data=request.data) #UnMarshall
+        if detalle_json.is_valid():
+            detalle_json.save()
+            return Response(detalle_json.data, status=201) # si se creo
+        return Response(detalle_json.errors, status=400) #si no se pudo crear

@@ -1,7 +1,7 @@
 from django.db import models
 # Create your models here.
 class Proveedor(models.Model):
-    nombre = models.CharField('Nombre del Producto',max_length=50)
+    nombre = models.CharField('Nombre del Proveedor',max_length=50)
     descripcion = models.TextField('Descripcion',blank=True, null=True,)
     telefono = models.CharField('Teléfono',max_length=10)
     celular = models.CharField('Celular',max_length=10,blank=True, null=True)
