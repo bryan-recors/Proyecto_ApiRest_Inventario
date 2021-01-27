@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    #para crear el token
+    'rest_framework.authtoken',
     'apps.proveedores',
     'apps.productos',
     'apps.ventas',

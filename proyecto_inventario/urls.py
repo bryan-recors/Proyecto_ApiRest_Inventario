@@ -25,7 +25,7 @@ urlpatterns = [
     path('',include(('apps.productos.urls','productos'))),
     path('',include(('apps.proveedores.urls','proveedores'))),
     path('',include(('apps.ventas.urls','ventas'))),
-    #path('',include(('apps.users.urls','users'))),
+    path('',include(('apps.users.urls','users'))),
 ]
 
 if settings.DEBUG:
