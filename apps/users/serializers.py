@@ -62,7 +62,7 @@ class UserRegistrarseSerializer(serializers.Serializer):
         passwd = data['password']
         passwd_conf = data['confirmacion_password']
         if passwd != passwd_conf:
-            raise serializer.ValidationError("contraselas no coinciden")
+            raise serializers.ValidationError("contraseñas no coinciden")
         password_validation.validate_password(passwd)
         return data
 
