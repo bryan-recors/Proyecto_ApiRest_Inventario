@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#cambiar el modelo user por un creado por mi
+AUTH_USER_MODEL ='users.User'
 
 # Application definition
 
@@ -38,10 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    #para crear el token
+    'rest_framework.authtoken',
     'apps.proveedores',
     'apps.productos',
     'apps.ventas',
-
+    'apps.users',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

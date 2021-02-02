@@ -11,7 +11,7 @@ class Venta(models.Model):
         verbose_name= 'Venta'
         verbose_name_plural = 'Ventas'
         ordering = ['fecha']
-
+ 
 class DetalleVenta(models.Model):
     venta = models.ForeignKey(Venta, on_delete=models.CASCADE,verbose_name="factura")
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE,verbose_name="Producto")
