@@ -1,6 +1,23 @@
+#********** una mejor forma de hacerlo con viewsets sin tener q poner todos los metodos*
+from django.shortcuts import render
+from rest_framework import viewsets
+from apps.ventas.models import Venta,DetalleVenta
+from apps.ventas.serializers import VentaSerializer,DetalleVentaSerializer
+# Create your views here.
+
+class VentaViewSet(viewsets.ModelViewSet):
+    queryset = Venta.objects.all()
+    serializer_class = VentaSerializer
+
+class DetalleVentaViewSet(viewsets.ModelViewSet):
+    queryset = DetalleVenta.objects.all()
+    serializer_class = DetalleVentaSerializer
+
+#¨*********************una forma mas larga de hacerlo********************
+"""
 from django.shortcuts import render
 from rest_framework.views import APIView
-from apps.ventas.models import Venta,DetalleVenta
+
 from rest_framework.response import Response
 from apps.ventas.serializers import VentaSerializer,DetalleVentaSerializer
 #para cuando no existe un ventas
@@ -33,3 +50,4 @@ class DetalleVentaView(APIView):
             detalle_json.save()
             return Response(detalle_json.data, status=201) # si se creo
         return Response(detalle_json.errors, status=400) #si no se pudo crear
+"""
