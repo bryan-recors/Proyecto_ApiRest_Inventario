@@ -60,3 +60,19 @@ class UserGetPutDeleteView(APIView):
         usuario = self.get_object(id)
         usuario.delete()
         return Response(status=204) # como ya se elimino no encontro ningun contenido
+
+#buscar un proveedor por su nombre
+class UserSearchListView(APIView):
+    def get_queryset(self):
+        try:
+            return User.objects.filter(first_name__icontains=self.query())
+        except User.DoesNotExist:
+            usuario = get_object_or_404(User, first_name=self.query())
+
+    def query(self):
+        return self.request.GET.get('q')
+
+    def get(self,request):
+        usuarios = self.get_queryset()
+        usuario_json = UserModelSerializer(usuarios, many=True)
+        return Response(usuario_json.data)

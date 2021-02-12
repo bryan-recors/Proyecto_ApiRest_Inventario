@@ -47,3 +47,19 @@ class DetalleProveedor(APIView):
         proveedor = self.get_object(id)
         proveedor.delete()
         return Response(status=204) # como ya se elimino no encontro ningun contenido
+
+#buscar un proveedor por su nombre
+class ProveedorSearchListView(APIView):
+    def get_queryset(self):
+        try:
+            return Proveedor.objects.filter(nombre__icontains=self.query())
+        except Proveedor.DoesNotExist:
+            producto = get_object_or_404(Proveedor, nombre=self.query())
+
+    def query(self):
+        return self.request.GET.get('q')
+
+    def get(self,request):
+        productos = self.get_queryset()
+        producto_json = ProveedorSerializers(productos, many=True)
+        return Response(producto_json.data)
