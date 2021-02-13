@@ -10,4 +10,4 @@ class CompraModelSerializer(serializers.ModelSerializer):
 class DetalleCompraModelSerializer(serializers.ModelSerializer):
     class Meta:
         model = DetalleCompra
-        fields =('id','venta','producto','precio_compra','cantidad','subtotal')
+        fields =('id','compra','producto','precio_compra','cantidad','subtotal')

@@ -13,7 +13,7 @@ class Compra(models.Model):
         ordering = ['fecha']
 
 class DetalleCompra(models.Model):
-    venta = models.ForeignKey(Compra, on_delete=models.CASCADE,verbose_name="Compra")
+    compra = models.ForeignKey(Compra, on_delete=models.CASCADE,verbose_name="compra")
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE,verbose_name="Producto")
     precio_compra = models.DecimalField('Precio_compra',default=0.00,max_digits=9,decimal_places=2)
     cantidad = models.IntegerField('Cantidad',default=0)

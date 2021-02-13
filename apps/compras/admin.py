@@ -11,7 +11,7 @@ admin.site.register(Compra,CompraAdmin)
 
 class DetalleCompraAdmin(admin.ModelAdmin):
     #lo que se va a mostrar al listar
-    list_display = ('id','venta','producto','precio_compra','cantidad','subtotal')
+    list_display = ('id','compra','producto','precio_compra','cantidad','subtotal')
     #filtro
     list_filter=('cantidad','subtotal')
 

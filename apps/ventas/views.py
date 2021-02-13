@@ -4,6 +4,11 @@ from rest_framework import viewsets
 from apps.ventas.models import Venta,DetalleVenta
 from apps.ventas.serializers import VentaSerializer,DetalleVentaSerializer
 # Create your views here.
+#para usar la APIView de la libreria rest_framework
+from rest_framework.views import APIView
+#para retornar json
+from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 class VentaViewSet(viewsets.ModelViewSet):
     queryset = Venta.objects.all()
@@ -12,6 +17,16 @@ class VentaViewSet(viewsets.ModelViewSet):
 class DetalleVentaViewSet(viewsets.ModelViewSet):
     queryset = DetalleVenta.objects.all()
     serializer_class = DetalleVentaSerializer
+
+#*******************vamos a ver que sale con esto men
+
+class FullDetalleVentaViewSet(APIView):
+    def get(self, request, id):
+        detalles = DetalleVenta.objects.filter(venta__id = id)
+        print(detalles)
+        detalleVenta_json = DetalleVentaSerializer(detalles, many=True)
+        return Response(detalleVenta_json.data)
+        #Crear registro de Proveedores
 
 #¨*********************una forma mas larga de hacerlo********************
 """
