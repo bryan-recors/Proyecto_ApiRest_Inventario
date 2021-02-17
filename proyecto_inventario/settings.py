@@ -62,6 +62,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'proyecto_inventario.urls'
+#APPEND_SLASH=False
 
 TEMPLATES = [
     {

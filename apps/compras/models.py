@@ -4,8 +4,8 @@ from apps.proveedores.models import Proveedor
 from datetime import datetime
 # Create your models here.
 class Compra(models.Model):
-    fecha = models.DateField('Fecha de compra',default=datetime.now)
-    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE,verbose_name="Proveedor")
+    fecha = models.DateTimeField('Fecha de compra',default=datetime.now())
+    proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE,blank=True, null=True,verbose_name="Proveedor")
     total= models.DecimalField('Total pagado',default=0.00,max_digits=9,decimal_places=2)
     class Meta:
         verbose_name= 'Compra'
