@@ -31,12 +31,12 @@ class DetalleProducto(APIView):
     #mostrar un video de acuerdo a su id
     def get(self,request,id):
         producto = self.get_object(id)
-        producto_json = ProductoSerializer(producto)
+        producto_json = PostProductoSerializer(producto)
         return Response(producto_json.data)
     #actualizar registro de un producto
     def put(self,request,id):
         producto = self.get_object(id)
-        producto_json = ProductoSerializer(producto, data=request.data)
+        producto_json = PostProductoSerializer(producto, data=request.data)
         if producto_json.is_valid():
             producto_json.save() #guardar el producto ya serializado
             return Response(producto_json.data) # retorno los datos
