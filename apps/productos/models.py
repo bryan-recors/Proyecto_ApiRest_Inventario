@@ -9,6 +9,8 @@ class Producto(models.Model):
     descripcion = models.TextField('Descripcion',blank=True, null=True)
     precio = models.FloatField('Precio de venta')
     stock=models.IntegerField('Cantidad existente')
+    fecha_caducidad = models.DateField(blank=True, null=True)
+    imagen = models.ImageField(upload_to='productos/',blank=True, null=True)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE,verbose_name="Proveedor")
     def clean(self):
         if self.nombre.isdigit():
@@ -19,7 +21,7 @@ class Producto(models.Model):
             else:
                 if self.stock ==0:
                     raise ValidationError('El campo "Cantidad Existente" debe ser mayor a 1 unidad')
-    
+
     # para conocer cuantos productos se Registro
     created_at = models.DateTimeField(auto_now_add=True)
 

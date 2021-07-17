@@ -3,7 +3,7 @@ from apps.productos.models import Producto
 # Register your models here.
 class ProductoAdmin(admin.ModelAdmin):
     #lo que se va a mostrar al listar
-    list_display = ('nombre','precio','stock','proveedor','created_at')
+    list_display = ('nombre','precio','stock','fecha_caducidad','imagen','proveedor','created_at')
     #buscador por nombre y stock
     search_fields = ('nombre','stock')
     #filtro

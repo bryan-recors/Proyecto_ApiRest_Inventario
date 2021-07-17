@@ -7,6 +7,7 @@ class Proveedor(models.Model):
     celular = models.CharField('Celular',max_length=10,blank=True, null=True)
     email = models.EmailField('Correo',blank=True, null=True)
     dias_visita = models.CharField('Dias de visita',max_length=300)
+    imagen = models.ImageField(upload_to='proveedores/',blank=True, null=True)
     # para conocer cuanto una parroquias se Registro
     created_at = models.DateTimeField(auto_now_add=True)
     class Meta:

@@ -9,6 +9,18 @@ from apps.proveedores.serializers import ProveedorSerializers
 from apps.proveedores.models import Proveedor
 from django.shortcuts import get_object_or_404
 
+# añadiendo un formulario
+from django.views.generic import CreateView
+from .models import Proveedor
+from .forms import FormularioProveedor
+from django.urls import reverse_lazy
+#registrar usuarios
+class RegistrarProveedor(CreateView):
+    model = Proveedor
+    form_class = FormularioProveedor
+    template_name = 'proveedor/crear_proveedor.html'
+    success_url = reverse_lazy('proveedores:proveedores')
+
 class ListarProveedores(APIView):
     def get(self, request):
         proveedores = Proveedor.objects.all()

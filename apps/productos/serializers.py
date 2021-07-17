@@ -7,10 +7,10 @@ class ProductoSerializer(serializers.ModelSerializer):
     proveedor = ProveedorSerializers(read_only = True)
     class Meta:
         model = Producto
-        fields =('id','nombre','descripcion','precio','stock','proveedor')
+        fields =('id','nombre','descripcion','precio','stock','fecha_caducidad','imagen','proveedor')
 
 class PostProductoSerializer(serializers.ModelSerializer):
     #para que se Guarde un nuevo
     class Meta:
         model = Producto
-        fields =('id','nombre','descripcion','precio','stock','proveedor')
+        fields =('id','nombre','descripcion','precio','stock','fecha_caducidad','imagen','proveedor')
