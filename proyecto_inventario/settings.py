@@ -25,7 +25,7 @@ SECRET_KEY = '97j!$tg&obk%sp=ldd_-=hh0i$u7q_0)85jt8xe(b0ij!s)t!%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.191','localhost','127.0.0.1']
 
 #cambiar el modelo user por un creado por mi
 AUTH_USER_MODEL ='users.User'
